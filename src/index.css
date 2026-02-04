@@ -339,3 +339,7 @@ section {
     padding: 8px;
   }
 }
+
+.footer-content {
+  padding: 2rem;
+}

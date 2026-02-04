@@ -15,7 +15,10 @@ import {
   Workflow,
   Activity,
   Box,
-  Cpu
+  Cpu,
+  Code,
+  Terminal,
+  Container
 } from 'lucide-react';
 import './index.css';
 
@@ -114,10 +117,13 @@ export default function App() {
     <>
       <nav className="navbar">
         <div className="container">
-          <div className="logo">
-            {/* Logo IPN Estilo */}
-            <div className="w-8 h-8 bg-[#621132] rounded-md flex items-center justify-center text-white font-bold text-xs shadow-sm">IPN</div>
-            <span className="text-[#333333]">SCADA NEXT-GEN</span>
+          <div className="logo flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <img src={ipnLogo} alt="IPN" className="h-8 w-auto object-contain drop-shadow-sm" />
+              <div className="h-6 w-[1px] bg-gray-300 mx-1"></div>
+              <img src={esimeLogo} alt="ESIME" className="h-8 w-auto object-contain drop-shadow-sm" />
+            </div>
+            <span className="text-[#333333] font-bold text-sm md:text-base ml-2">SCADA <span className="text-[#621132]">NEXT-GEN</span></span>
           </div>
           <ul className="nav-links">
             <li><a href="#problem">Problema</a></li>
@@ -143,12 +149,16 @@ export default function App() {
             </div>
 
             <h2 className="text-base md:text-lg text-white/80 font-medium tracking-widest uppercase mb-2">Seminario de Titulación</h2>
-            <h1 className="mb-6 leading-tight text-white">
+            <div className="mb-6 leading-tight text-white gap-4 flex flex-col" style={{ paddingBottom: '2rem' }}>
               <span className="block text-xl md:text-2xl text-white/90 font-normal mb-2">Propuesta de Proyecto Final</span>
               <span className="block text-3xl md:text-5xl font-bold">Arquitectura de Supervisión Industrial (SCADA)</span>
               <span className="text-xl md:text-2xl text-white/80 font-light mt-2 block">contenerizada con Docker, TimescaleDB, FastAPI y Next.js</span>
-            </h1>
-
+            </div>
+            <div className="mb-6 leading-tight text-white gap-4 flex flex-col" style={{ paddingBottom: '2rem' }}>
+              <span className="block text-xl md:text-2xl text-white/90 font-normal mb-2">Presenta</span>
+              <span className="block text-3xl md:text-5xl font-bold">Fabian Romero Hernández</span>
+              <span className="text-xs text-white/80">IPN - ESIME ZACATENCO - ICA</span>
+            </div>
             <div className="flex gap-4 mt-8">
               <a href="#demo" className="btn btn-primary shadow-lg border-none text-white font-bold">Ver Demo en Vivo</a>
               <a href="#index" className="btn bg-white/10 backdrop-blur border border-white/30 text-white hover:bg-white/20">Ver Índice</a>
@@ -212,7 +222,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Introducción */}
-            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#666666] shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#666666] shadow-sm hover:shadow-md transition-shadow" style={{ padding: '1rem' }}>
               <h3 className="font-bold text-lg text-[#333333] mb-3">Introducción y Objetivos</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
                 <li>Planteamiento del problema (Monitoreo industrial en [Empresa/Escenario]).</li>
@@ -221,7 +231,7 @@ export default function App() {
             </div>
 
             {/* Cap 1 */}
-            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#621132] shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#621132] shadow-sm hover:shadow-md transition-shadow" style={{ padding: '1rem' }}>
               <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 1: Marco Teórico</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
                 <li>Evolución de sistemas monolíticos a arquitecturas DevOps.</li>
@@ -230,7 +240,7 @@ export default function App() {
             </div>
 
             {/* Cap 2 */}
-            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#B38E5D] shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#B38E5D] shadow-sm hover:shadow-md transition-shadow" style={{ padding: '1rem' }}>
               <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 2: Análisis y Diseño</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
                 <li>Arquitectura Headless.</li>
@@ -239,7 +249,7 @@ export default function App() {
             </div>
 
             {/* Cap 3 */}
-            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#4A0D26] shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#4A0D26] shadow-sm hover:shadow-md transition-shadow" style={{ padding: '1rem' }}>
               <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 3: Implementación / Desarrollo</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
                 <li>Backend asíncrono con FastAPI y comunicación mediante S7Comm.</li>
@@ -248,7 +258,7 @@ export default function App() {
             </div>
 
             {/* Cap 4 */}
-            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-green-600 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-green-600 shadow-sm hover:shadow-md transition-shadow" style={{ padding: '1rem' }}>
               <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 4: Pruebas y Resultados</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
                 <li>Comparativa de rendimiento: WebSockets vs. Polling.</li>
@@ -257,7 +267,7 @@ export default function App() {
             </div>
 
             {/* Conclusiones */}
-            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#333333] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-center">
+            <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#333333] shadow-sm hover:shadow-md transition-shadow" style={{ padding: '1rem' }}>
               <h3 className="font-bold text-lg text-[#333333] mb-3">Conclusiones y Bibliografía</h3>
               <p className="text-sm text-[#666666]">
                 Referencias y trabajos futuros.
@@ -332,12 +342,18 @@ export default function App() {
             <ArchitectureDiagram />
           </div>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <div className="mt-12 flex flex-wrap justify-center gap-4" style={{ paddingTop: '2rem' }}>
             {['React 18', 'TypeScript', 'Next.js 14', 'FastAPI', 'Python 3.11', 'TimescaleDB', 'MQTT', 'Docker', 'pyModbusTCP'].map(tech => (
               <span key={tech} className="tech-pill bg-[#621132]/5 text-[#621132] border border-[#621132]/20">
                 {tech === 'React 18' && <Laptop size={14} className="mr-1 inline" />}
-                {tech === 'Python 3.11' && <Zap size={14} className="mr-1 inline" />}
+                {tech === 'TypeScript' && <Code size={14} className="mr-1 inline" />}
+                {tech === 'Next.js 14' && <Box size={14} className="mr-1 inline" />}
+                {tech === 'FastAPI' && <Zap size={14} className="mr-1 inline" />}
+                {tech === 'Python 3.11' && <Terminal size={14} className="mr-1 inline" />}
+                {tech === 'TimescaleDB' && <Database size={14} className="mr-1 inline" />}
                 {tech === 'MQTT' && <Activity size={14} className="mr-1 inline" />}
+                {tech === 'Docker' && <Container size={14} className="mr-1 inline" />}
+                {tech === 'pyModbusTCP' && <Workflow size={14} className="mr-1 inline" />}
                 {tech}
               </span>
             ))}
@@ -459,7 +475,7 @@ export default function App() {
       <section id="team" className="bg-white">
         <div className="container">
           <div className="section-header">
-            <h2 className="text-[#4A0D26]">Repositorios & Equipo</h2>
+            <h2 className="text-[#4A0D26]">Repositorios</h2>
             <p className="text-[#666666]">Código fuente abierto y documentación</p>
           </div>
 
@@ -486,51 +502,40 @@ export default function App() {
               </div>
             </a>
           </div>
-
-          <div className="mt-16 text-center border-t border-[#E0E0E0] pt-8">
-            <div className="inline-flex items-center gap-2 text-[#666666] mb-4 font-semibold">
-              <Building2 size={16} /> Escuela Superior de Ingeniería Mecánica y Eléctrica
-            </div>
-            <p className="text-sm text-[#999999]">
-              Proyecto para Seminario de Titulación 2026.
-            </p>
-          </div>
         </div>
       </section>
 
       {/* CONCLUSION */}
-      <section className="bg-gradient-to-r from-[#621132] to-[#4A0D26] relative overflow-hidden text-white">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#B38E5D]/20 rounded-full blur-3xl pointer-events-none"></div>
-
+      <section className="bg-white py-20 border-b border-gray-200">
         <div className="container relative z-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">Conclusión y Valor Estratégico</h2>
-
-          <div className="max-w-3xl mx-auto mb-12">
-            <div className="bg-white/10 backdrop-blur border border-white/20 p-8 rounded-2xl shadow-xl relative">
-              <span className="text-4xl absolute -top-4 -left-4 bg-[#B38E5D] rounded-full p-2 border-2 border-white shadow-lg">💡</span>
-              <p className="text-lg md:text-xl text-white italic leading-relaxed">
-                "Esta tesis no reinventa la rueda, sino que cambia el vehículo. Pasamos de un modelo propietario y restrictivo a uno <span className="text-[#B38E5D] font-bold">abierto</span>, nativo para <span className="text-[#B38E5D] font-bold">IA</span> y validado <span className="text-green-300 font-bold">industrialmente</span>."
-              </p>
-            </div>
+          <div className="section-header">
+            <h2 className="text-[#4A0D26]">Conclusión y Valor Estratégico</h2>
+            <p className="text-[#666666]">Síntesis del impacto tecnológico e industrial del proyecto</p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6">
-            <div className="flex flex-col items-center gap-3 p-4 bg-white/10 rounded-xl border border-white/10 min-w-[150px]">
-              <div className="p-3 bg-white rounded-full text-[#621132]"><Server size={24} /></div>
-              <span className="font-bold text-white">Future-Proof</span>
-              <span className="text-xs text-white/70">Escalable y actualizable</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col items-center">
+              <div className="w-16 h-16 bg-[#621132]/5 rounded-full flex items-center justify-center mb-6 text-[#621132]">
+                <Server size={32} />
+              </div>
+              <h3 className="font-bold text-[#4A0D26] text-xl mb-2">Future-Proof</h3>
+              <p className="text-[#666666]">Arquitectura escalable diseñada para integrar nuevas tecnologías sin refactorización.</p>
             </div>
-            <div className="flex flex-col items-center gap-3 p-4 bg-white/10 rounded-xl border border-white/10 min-w-[150px]">
-              <div className="p-3 bg-white rounded-full text-[#621132]"><Cloud size={24} /></div>
-              <span className="font-bold text-white">Cloud-Native</span>
-              <span className="text-xs text-white/70">Docker & Microservicios</span>
+
+            <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col items-center">
+              <div className="w-16 h-16 bg-[#B38E5D]/10 rounded-full flex items-center justify-center mb-6 text-[#B38E5D]">
+                <Cloud size={32} />
+              </div>
+              <h3 className="font-bold text-[#4A0D26] text-xl mb-2">Cloud-Native</h3>
+              <p className="text-[#666666]">Despliegue contenerizado con Docker y orquestación de microservicios eficiente.</p>
             </div>
-            <div className="flex flex-col items-center gap-3 p-4 bg-white/10 rounded-xl border border-white/10 min-w-[150px]">
-              <div className="p-3 bg-white rounded-full text-[#621132]"><CheckCircle size={24} /></div>
-              <span className="font-bold text-white">Cost-Effective</span>
-              <span className="text-xs text-white/70">Open Source Stack</span>
+
+            <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col items-center">
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-6 text-green-600">
+                <CheckCircle size={32} />
+              </div>
+              <h3 className="font-bold text-[#4A0D26] text-xl mb-2">Cost-Effective</h3>
+              <p className="text-[#666666]">Reducción significativa de costos por licenciamiento mediante Open Source Stack.</p>
             </div>
           </div>
         </div>
@@ -538,7 +543,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="footer bg-[#333333] text-white py-8 text-center text-sm">
-        <div className="container">
+        <div className="container footer-content">
           <div className="flex justify-center items-center gap-4 mb-4 opacity-50">
             {/* Iconos o logos pequeños si se desea */}
           </div>

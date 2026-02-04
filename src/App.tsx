@@ -19,6 +19,10 @@ import {
 } from 'lucide-react';
 import './index.css';
 
+// Import Logos
+import ipnLogo from './assets/instituto-politecnico-nacional-seeklogo.svg';
+import esimeLogo from './assets/esime.png';
+
 // Componente Diagrama Arquitectura (Adaptado a tema Claro IPN)
 const ArchitectureDiagram = () => (
   <div className="flex flex-col lg:flex-row items-center justify-center gap-6 w-full max-w-5xl mx-auto text-slate-800">
@@ -130,8 +134,12 @@ export default function App() {
           <div className="hero-content">
             <div className="institution-badges">
               {/* Badges IPN/ESIME en blanco sobre fondo guinda */}
-              <div className="badge-circle">LOGO<br />IPN</div>
-              <div className="badge-circle">LOGO<br />ESIME</div>
+              <div className="badge-circle bg-white p-2">
+                <img src={ipnLogo} alt="Logo IPN" className="w-full h-full object-contain" />
+              </div>
+              <div className="badge-circle bg-white p-1">
+                <img src={esimeLogo} alt="Logo ESIME" className="w-full h-full object-contain" />
+              </div>
             </div>
 
             <h2 className="text-base md:text-lg text-white/80 font-medium tracking-widest uppercase mb-2">Seminario de Titulación</h2>
@@ -207,52 +215,52 @@ export default function App() {
             <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#666666] shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-bold text-lg text-[#333333] mb-3">Introducción y Objetivos</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
-                <li>Planteamiento del problema (Monitoreo industrial y costos)</li>
-                <li><strong>Objetivo:</strong> Sistema HMI/SCADA basado en microservicios</li>
+                <li>Planteamiento del problema (Monitoreo industrial en [Empresa/Escenario]).</li>
+                <li>Objetivo general: Implementar un sistema HMI/SCADA basado en microservicios.</li>
               </ul>
             </div>
 
             {/* Cap 1 */}
             <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#621132] shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg text-[#333333] mb-3">Cap. 1: Marco Teórico</h3>
+              <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 1: Marco Teórico</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
-                <li>Evolución: Monolito vs DevOps</li>
-                <li>Limitaciones Jython vs Python 3 moderno</li>
+                <li>Evolución de sistemas monolíticos a arquitecturas DevOps.</li>
+                <li>Limitaciones de Jython vs. la eficiencia de Python 3 moderno.</li>
               </ul>
             </div>
 
             {/* Cap 2 */}
             <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#B38E5D] shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg text-[#333333] mb-3">Cap. 2: Análisis y Diseño</h3>
+              <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 2: Análisis y Diseño</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
-                <li>Arquitectura Headless</li>
-                <li>Desacoplamiento: Datos (Edge RPi) vs Lógica</li>
+                <li>Arquitectura Headless.</li>
+                <li>Desacoplamiento de datos (Edge computing en RPi) y lógica de negocio.</li>
               </ul>
             </div>
 
             {/* Cap 3 */}
             <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#4A0D26] shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg text-[#333333] mb-3">Cap. 3: Implementación</h3>
+              <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 3: Implementación / Desarrollo</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
-                <li>Backend asíncrono FastAPI + S7Comm</li>
-                <li>Integración HW Industrial (Telemetic)</li>
+                <li>Backend asíncrono con FastAPI y comunicación mediante S7Comm.</li>
+                <li>Integración de hardware industrial (Equipos Telemetic).</li>
               </ul>
             </div>
 
             {/* Cap 4 */}
             <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-green-600 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg text-[#333333] mb-3">Cap. 4: Pruebas y Resultados</h3>
+              <h3 className="font-bold text-lg text-[#333333] mb-3">Capítulo 4: Pruebas y Resultados</h3>
               <ul className="text-sm text-[#666666] space-y-2 list-disc pl-4">
-                <li>Rendimiento: WebSockets vs Polling</li>
-                <li>Pruebas de estrés y concurrencia</li>
+                <li>Comparativa de rendimiento: WebSockets vs. Polling.</li>
+                <li>Pruebas de estrés y manejo de concurrencia.</li>
               </ul>
             </div>
 
             {/* Conclusiones */}
             <div className="bg-[#F8F9FA] p-6 rounded-xl border-l-4 border-[#333333] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-center">
-              <h3 className="font-bold text-lg text-[#333333] mb-3">Conclusiones</h3>
+              <h3 className="font-bold text-lg text-[#333333] mb-3">Conclusiones y Bibliografía</h3>
               <p className="text-sm text-[#666666]">
-                Análisis de valor estratégico, bibliografía y trabajos futuros.
+                Referencias y trabajos futuros.
               </p>
             </div>
           </div>

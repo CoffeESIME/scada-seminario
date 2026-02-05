@@ -150,8 +150,7 @@ export default function App() {
             <h2 className="text-base md:text-lg text-white/80 font-medium tracking-widest uppercase mb-2">Seminario de Titulación</h2>
             <div className="mb-6 leading-tight text-white gap-4 flex flex-col" style={{ paddingBottom: '2rem' }}>
               <span className="block text-xl md:text-2xl text-white/90 font-normal mb-2">Propuesta de Proyecto Final</span>
-              <span className="block text-3xl md:text-5xl font-bold">Arquitectura de Supervisión Industrial (SCADA)</span>
-              <span className="text-xl md:text-2xl text-white/80 font-light mt-2 block">contenerizada con Docker, TimescaleDB, FastAPI y Next.js</span>
+              <span className="block text-3xl md:text-5xl font-bold">Arquitectura SCADA Industrial Multi-Protocolo (MQTT, Modbus, OPC UA) mediante Microservicios Contenerizados</span>
             </div>
             <div className="mb-6 leading-tight text-white gap-4 flex flex-col" style={{ paddingBottom: '2rem' }}>
               <span className="block text-xl md:text-2xl text-white/90 font-normal mb-2">Presenta</span>

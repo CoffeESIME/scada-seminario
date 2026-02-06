@@ -17,8 +17,10 @@ import {
   Cpu,
   Code,
   Terminal,
-  Container
+  Container,
+  BookOpen
 } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 import './index.css';
 
 // Import Logos
@@ -322,6 +324,7 @@ export default function App() {
                 <li>• <strong>AI:</strong> Nativo (NumPy/TensorFlow)</li>
                 <li>• <strong>Costo:</strong> $0 (Open Source)</li>
                 <li>• <strong>Validación:</strong> Hardware Industrial Real</li>
+                <li>• <strong>Normativa:</strong> Basado en ISA 101 HMI</li>
               </ul>
             </div>
           </div>
@@ -341,7 +344,7 @@ export default function App() {
           </div>
 
           <div className="mt-12 flex flex-wrap justify-center gap-4" style={{ paddingTop: '2rem' }}>
-            {['React 18', 'TypeScript', 'Next.js 14', 'FastAPI', 'Python 3.11', 'TimescaleDB', 'MQTT', 'Docker', 'pyModbusTCP'].map(tech => (
+            {['React 18', 'TypeScript', 'Next.js 14', 'FastAPI', 'Python 3.11', 'TimescaleDB', 'MQTT', 'Docker', 'pyModbusTCP', 'ISA 101'].map(tech => (
               <span key={tech} className="tech-pill bg-[#621132]/5 text-[#621132] border border-[#621132]/20">
                 {tech === 'React 18' && <Laptop size={14} className="mr-1 inline" />}
                 {tech === 'TypeScript' && <Code size={14} className="mr-1 inline" />}
@@ -352,6 +355,7 @@ export default function App() {
                 {tech === 'MQTT' && <Activity size={14} className="mr-1 inline" />}
                 {tech === 'Docker' && <Container size={14} className="mr-1 inline" />}
                 {tech === 'pyModbusTCP' && <Workflow size={14} className="mr-1 inline" />}
+                {tech === 'ISA 101' && <BookOpen size={14} className="mr-1 inline" />}
                 {tech}
               </span>
             ))}
@@ -534,6 +538,169 @@ export default function App() {
               </div>
               <h3 className="font-bold text-[#4A0D26] text-xl mb-2">Cost-Effective</h3>
               <p className="text-[#666666]">Reducción significativa de costos por licenciamiento mediante Open Source Stack.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BUSINESS CARD SECTION */}
+      <section id="contact" style={{ backgroundColor: '#f1f5f9', padding: '64px 0' }}>
+        <div className="container">
+          <div className="section-header">
+            <h2 className="text-[#4A0D26]">Contacto</h2>
+            <p className="text-[#666666]">Información del Proyecto y Autor</p>
+          </div>
+
+          {/* Business Card */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{
+              width: '100%',
+              maxWidth: '650px',
+              backgroundColor: 'white',
+              borderRadius: '16px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              border: '1px solid #e2e8f0'
+            }}>
+
+              {/* Decoración Superior */}
+              <div style={{
+                height: '8px',
+                width: '100%',
+                background: 'linear-gradient(to right, #7f1d1d, white, #1e3a8a)'
+              }}></div>
+
+              {/* Encabezado Institucional */}
+              <div style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '16px 32px 8px 32px',
+                opacity: 0.7
+              }}>
+                <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#7f1d1d', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Instituto Politécnico Nacional
+                </div>
+                <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#1e3a8a', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  ESIME Zacatenco
+                </div>
+              </div>
+
+              {/* Contenido Principal */}
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                padding: '16px 32px 32px 32px',
+                gap: '32px'
+              }}>
+
+                {/* Lado Izquierdo: Información Textual */}
+                <div style={{
+                  flex: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  textAlign: 'left',
+                  gap: '20px'
+                }}>
+                  <div>
+                    <span style={{
+                      fontSize: '10px',
+                      fontWeight: 'bold',
+                      letterSpacing: '0.1em',
+                      color: '#94a3b8',
+                      textTransform: 'uppercase',
+                      display: 'block',
+                      marginBottom: '8px'
+                    }}>Proyecto</span>
+                    <h3 style={{
+                      fontSize: '18px',
+                      fontWeight: 800,
+                      color: '#0f172a',
+                      lineHeight: 1.4,
+                      margin: 0
+                    }}>
+                      Arquitectura SCADA Industrial Multi-Protocolo (MQTT, Modbus, OPC UA) mediante Microservicios Contenerizados
+                    </h3>
+                  </div>
+
+                  <div style={{
+                    paddingTop: '16px',
+                    borderTop: '1px solid #e2e8f0'
+                  }}>
+                    <p style={{ fontSize: '20px', fontWeight: 'bold', color: '#1e293b', margin: '0 0 4px 0' }}>
+                      Fabian Romero Hernández
+                    </p>
+                    <p style={{ fontSize: '14px', color: '#475569', fontWeight: 500, margin: '0 0 12px 0' }}>
+                      Ing. en Control y Automatización
+                    </p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#2563eb' }}>
+                      <Github size={14} />
+                      <span style={{ fontSize: '12px', fontFamily: 'monospace' }}>github.com/CoffeESIME</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lado Derecho: QR Code */}
+                <div style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '12px',
+                  border: '1px solid #e2e8f0',
+                  padding: '24px',
+                  textAlign: 'center',
+                  minWidth: '150px'
+                }}>
+                  <QRCodeSVG
+                    value="https://scada-seminario.vercel.app/"
+                    size={90}
+                    level="M"
+                    includeMargin={false}
+                  />
+                  <span style={{
+                    fontSize: '9px',
+                    fontWeight: 'bold',
+                    color: '#94a3b8',
+                    marginTop: '12px',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase'
+                  }}>Scan Me</span>
+                  <a
+                    href="https://scada-seminario.vercel.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      fontSize: '10px',
+                      color: '#2563eb',
+                      fontFamily: 'monospace',
+                      marginTop: '4px',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    scada-seminario.vercel.app
+                  </a>
+                </div>
+              </div>
+
+              {/* Decoración Inferior */}
+              <div style={{
+                height: '24px',
+                width: '100%',
+                backgroundColor: '#f8fafc',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                padding: '0 32px',
+                alignItems: 'center',
+                borderTop: '1px solid #f1f5f9'
+              }}>
+                <span style={{ fontSize: '9px', color: '#94a3b8', fontFamily: 'monospace' }}>v1.0.0-release</span>
+              </div>
             </div>
           </div>
         </div>

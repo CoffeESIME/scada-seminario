@@ -367,7 +367,7 @@ export default function App() {
       <section id="demo" className="bg-[#F8F9FA]">
         <div className="container">
           <div className="section-header">
-            <h2 className="text-[#4A0D26]">Demo en Vivo</h2>
+            <h2 className="text-[#4A0D26]">Demo en Vivo (Deshabilitado por ahora)</h2>
             <p className="text-[#666666]">Visualización del Runtime en Tiempo Real</p>
           </div>
 
@@ -493,7 +493,7 @@ export default function App() {
               </div>
             </a>
 
-            <a href="https://github.com/CoffeESIME/scada-backend" target="_blank" className="modern-card flex items-center gap-4 group cursor-pointer no-underline bg-[#F8F9FA] hover:bg-white border hover:border-[#621132]">
+            <a href="https://github.com/CoffeESIME/react-scada-backend" target="_blank" className="modern-card flex items-center gap-4 group cursor-pointer no-underline bg-[#F8F9FA] hover:bg-white border hover:border-[#621132]">
               <div className="p-4 bg-white rounded-full transition-colors border border-gray-200 shadow-sm group-hover:border-[#621132]">
                 <Server className="w-8 h-8 text-[#333333] group-hover:text-[#621132]" />
               </div>

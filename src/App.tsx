@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ChevronDown,
   Radio,
@@ -26,94 +27,10 @@ import './index.css';
 // Import Logos
 import ipnLogo from './assets/instituto-politecnico-nacional-seeklogo.svg';
 import esimeLogo from './assets/esime.png';
+import { ArchitectureDiagram } from './components/ArchitectureDiagram';
+import { SlideshowView } from './components/SlideshowView';
 
-// Componente Diagrama Arquitectura (Adaptado a tema Claro IPN)
-const ArchitectureDiagram = () => (
-  <div className="flex flex-col lg:flex-row items-center justify-center gap-6 w-full max-w-5xl mx-auto text-slate-800">
-    {/* Campo OT */}
-    <div className="flex flex-col gap-3 min-w-[200px]">
-      <div className="text-xs font-bold text-[#621132] uppercase tracking-wider text-center mb-2">Campo (OT)</div>
-      <div className="bg-white p-4 rounded-xl border-2 border-[#E0E0E0] flex flex-col gap-3 shadow-sm">
-        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded border border-gray-200 relative">
-          <div className="absolute -top-2 -right-2 bg-green-600 text-white text-[9px] px-1.5 rounded font-bold shadow-sm">REAL</div>
-          <Box className="text-[#666666]" />
-          <div>
-            <div className="font-bold text-sm text-[#333333]">PLC S7-1212</div>
-            <div className="text-xs text-[#666666]">Profinet</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 p-3 bg-[#B38E5D]/10 rounded border border-[#B38E5D]/50 relative">
-          <div className="absolute -top-2 -right-2 bg-[#B38E5D] text-white text-[9px] px-1.5 rounded font-bold shadow-sm">OEM</div>
-          <Radio className="text-[#B38E5D]" />
-          <div>
-            <div className="font-bold text-sm text-[#333333]">Eq. Telemetic</div>
-            <div className="text-xs text-[#666666]">Modbus/OPC</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded border border-gray-200">
-          <Cpu className="text-[#666666]" />
-          <div>
-            <div className="font-bold text-sm text-[#333333]">Pico W</div>
-            <div className="text-xs text-[#666666]">IoT Node</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Flecha */}
-    <ArrowRight className="hidden lg:block w-8 h-8 text-[#621132] animate-pulse" />
-    <ChevronDown className="lg:hidden w-8 h-8 text-[#621132] animate-pulse" />
-
-    {/* Cloud RPi */}
-    <div className="flex flex-col gap-3 min-w-[220px]">
-      <div className="text-xs font-bold text-[#621132] uppercase tracking-wider text-center mb-2 flex justify-center gap-2">
-        <Cloud size={14} /> Simulación Cloud
-      </div>
-      <div className="bg-white p-6 rounded-xl border-2 border-[#621132] flex flex-col gap-4 relative shadow-xl">
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#621132] text-white px-3 py-0.5 text-[10px] rounded-full font-bold shadow-sm">
-          Raspberry Pi Server
-        </span>
-        <div className="flex flex-col items-center p-3 bg-gray-50 rounded border border-gray-200 text-center">
-          <Activity className="text-[#B38E5D] mb-1" />
-          <span className="font-bold text-[#333333] text-sm">MQTT Broker</span>
-          <span className="text-xs text-[#666666]">Mosquitto</span>
-        </div>
-        <div className="flex flex-col items-center p-3 bg-gray-50 rounded border border-gray-200 text-center">
-          <Database className="text-[#621132] mb-1" />
-          <span className="font-bold text-[#333333] text-sm">TimescaleDB</span>
-          <span className="text-xs text-[#666666]">Historian</span>
-        </div>
-      </div>
-    </div>
-
-    {/* Flecha */}
-    <ArrowRight className="hidden lg:block w-8 h-8 text-[#621132] animate-pulse" />
-    <ChevronDown className="lg:hidden w-8 h-8 text-[#621132] animate-pulse" />
-
-    {/* App Layer */}
-    <div className="flex flex-col gap-3 min-w-[240px]">
-      <div className="text-xs font-bold text-[#621132] uppercase tracking-wider text-center mb-2">Lógica & HMI</div>
-      <div className="bg-[#621132]/5 p-4 rounded-xl border border-[#621132]/20 flex flex-col gap-4 h-full justify-center">
-        <div className="flex items-center gap-3 p-3 bg-white rounded border border-gray-200 shadow-sm">
-          <Zap className="text-[#B38E5D]" />
-          <div>
-            <div className="font-bold text-sm text-[#333333]">Backend</div>
-            <div className="text-xs text-[#666666]">FastAPI (Python)</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 p-3 bg-white rounded border border-gray-200 shadow-sm">
-          <Workflow className="text-[#621132]" />
-          <div>
-            <div className="font-bold text-sm text-[#333333]">Frontend HMI</div>
-            <div className="text-xs text-[#666666]">Next.js (React)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-)
-
-export default function App() {
+function ScrollingView({ onPresentClick }: { onPresentClick: () => void }) {
   return (
     <>
       <nav className="navbar">
@@ -131,6 +48,14 @@ export default function App() {
             <li><a href="#benchmark">Benchmarking</a></li>
             <li><a href="#architecture">Arquitectura</a></li>
             <li><a href="#demo">Demo</a></li>
+            <li>
+              <button 
+                onClick={onPresentClick}
+                className="bg-[#621132] text-white px-4 py-1.5 rounded-full text-sm font-bold hover:bg-[#4A0D26] transition-colors ml-4 shadow-md"
+              >
+                Modo Presentación
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -152,7 +77,7 @@ export default function App() {
             <h2 className="text-base md:text-lg text-white/80 font-medium tracking-widest uppercase mb-2">Seminario de Titulación</h2>
             <div className="mb-6 leading-tight text-white gap-4 flex flex-col" style={{ paddingBottom: '2rem' }}>
               <span className="block text-xl md:text-2xl text-white/90 font-normal mb-2">Propuesta de Proyecto Final</span>
-              <span className="block text-3xl md:text-5xl font-bold">Arquitectura SCADA Industrial Multi-Protocolo (MQTT, Modbus, OPC UA) mediante Microservicios Contenerizados</span>
+              <span className="block text-3xl md:text-5xl font-bold">DISEÑO Y DESARROLLO DE UNA ARQUITECTURA SCADA MULTIPROTOCOLO (MODBUS, MQTT) BASADA EN SERVICIOS CONTENERIZADOS</span>
             </div>
             <div className="mb-6 leading-tight text-white gap-4 flex flex-col" style={{ paddingBottom: '2rem' }}>
               <span className="block text-xl md:text-2xl text-white/90 font-normal mb-2">Presenta</span>
@@ -722,4 +647,18 @@ export default function App() {
       </footer>
     </>
   )
+}
+
+export default function App() {
+  const [viewMode, setViewMode] = useState<'scroll' | 'slides'>('scroll');
+
+  return (
+    <>
+      {viewMode === 'scroll' ? (
+        <ScrollingView onPresentClick={() => setViewMode('slides')} />
+      ) : (
+        <SlideshowView onClose={() => setViewMode('scroll')} />
+      )}
+    </>
+  );
 }

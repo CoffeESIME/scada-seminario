@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ReactFlow, Background, Controls } from '@xyflow/react';
+import { ReactFlow, Background, Controls, type Edge, MarkerType } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import BaseNode from './BaseNode';
 import { SiFastapi, SiPostgresql, SiReact } from 'react-icons/si';
@@ -20,7 +20,7 @@ const edgeMqtt = (extra = {}) => ({ type: 'smoothstep', labelStyle, labelBgStyle
 const edgeInternal = (extra = {}) => ({ type: 'smoothstep', labelStyle, labelBgStyle, style: { stroke: '#3b82f6', strokeWidth: 2 }, ...extra });
 const edgeDb = (extra = {}) => ({ type: 'smoothstep', labelStyle, labelBgStyle, style: { stroke: '#8b5cf6', strokeWidth: 1.8, strokeDasharray: '6 3' }, ...extra });
 const edgeHttp = (extra = {}) => ({ type: 'smoothstep', labelStyle, labelBgStyle, style: { stroke: '#f43f5e', strokeWidth: 2 }, ...extra });
-const edgeBidi = (extra = {}) => ({ type: 'smoothstep', labelStyle, labelBgStyle, style: { stroke: '#f43f5e', strokeWidth: 1.8 }, markerEnd: { type: 'arrowclosed' }, markerStart: { type: 'arrowclosed' }, ...extra });
+const edgeBidi = (extra = {}) => ({ type: 'smoothstep', labelStyle, labelBgStyle, style: { stroke: '#f43f5e', strokeWidth: 1.8 }, markerEnd: { type: MarkerType.ArrowClosed }, markerStart: { type: MarkerType.ArrowClosed }, ...extra });
 
 const initialNodes = [
   {
@@ -137,7 +137,7 @@ const initialNodes = [
   },
 ];
 
-const initialEdges = [
+const initialEdges: Edge[] = [
   {
     id: 'e-modbus-gateway',
     source: 'dev_modbus', sourceHandle: 'sb',

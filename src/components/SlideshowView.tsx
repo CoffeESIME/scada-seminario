@@ -1,4 +1,5 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -6,29 +7,21 @@ import {
   ShieldAlert,
   CheckCircle,
   Cloud,
-  Radio,
   Server,
-  Github,
   Laptop,
   Workflow,
   Activity,
-  Box,
-  Cpu,
-  Code,
   Terminal,
   Container,
   BookOpen,
-  Zap,
   Database,
   Lock,
   Maximize2
 } from 'lucide-react';
-import { QRCodeSVG } from 'qrcode.react';
 
 // Import Logos (adjust paths relative to components folder)
 import ipnLogo from '../assets/instituto-politecnico-nacional-seeklogo.svg';
 import esimeLogo from '../assets/esime.png';
-import { ArchitectureDiagram } from './ArchitectureDiagram';
 import { ScadaFlowDiagram } from './ScadaFlowDiagram';
 import { ProtocolFactoryDiagram } from './ProtocolFactoryDiagram';
 import { MosquittoSecurityDiagram } from './MosquittoSecurityDiagram';

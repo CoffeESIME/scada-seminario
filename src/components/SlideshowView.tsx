@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -20,7 +20,8 @@ import {
   BookOpen,
   Zap,
   Database,
-  Lock
+  Lock,
+  Maximize2
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 
@@ -40,9 +41,14 @@ interface SlideshowViewProps {
 export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = 11;
+  const [fullscreenContent, setFullscreenContent] = useState<ReactNode | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (fullscreenContent) {
+        if (e.key === 'Escape') setFullscreenContent(null);
+        return;
+      }
       if (e.key === 'ArrowRight' || e.key === ' ') {
         setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1));
       } else if (e.key === 'ArrowLeft') {
@@ -54,10 +60,46 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose, totalSlides]);
+  }, [onClose, totalSlides, fullscreenContent]);
 
   const nextSlide = () => setCurrentSlide((prev) => Math.min(prev + 1, totalSlides - 1));
   const prevSlide = () => setCurrentSlide((prev) => Math.max(prev - 1, 0));
+
+  // Helper: clickable wrapper that opens fullscreen modal
+  const ExpandableCard = ({ children, fullscreenNode }: { children: ReactNode; fullscreenNode: ReactNode }) => (
+    <div className="relative group cursor-zoom-in" onClick={() => setFullscreenContent(fullscreenNode)}>
+      {children}
+      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 text-white rounded-full p-1.5 z-10">
+        <Maximize2 size={16} />
+      </div>
+    </div>
+  );
+
+  // Fullscreen Modal
+  const FullscreenModal = () => {
+    if (!fullscreenContent) return null;
+    return (
+      <div
+        className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-sm flex items-center justify-center"
+        onClick={() => setFullscreenContent(null)}
+      >
+        <div
+          className="relative w-[95vw] h-[92vh] rounded-2xl overflow-hidden shadow-2xl bg-white flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={() => setFullscreenContent(null)}
+            className="absolute top-4 right-4 z-50 bg-red-600 hover:bg-red-700 text-white rounded-full p-2 shadow-lg transition-colors"
+          >
+            <X size={22} />
+          </button>
+          <div className="w-full h-full">
+            {fullscreenContent}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   // --- Slide Components ---
 
@@ -68,9 +110,9 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
           <img src={ipnLogo} alt="IPN" className="w-full h-full object-contain" />
         </div>
         <div className="flex flex-col items-center justify-center text-[#621132] font-bold text-center leading-tight">
-          <span className="text-base md:text-xl tracking-widest mb-1">INSTITUTO POLIT�0CNICO NACIONAL</span>
-          <span className="text-xs md:text-sm tracking-wide">ESCUELA SUPERIOR DE INGENIERÍA MECÁNICA Y EL�0CTRICA</span>
-          <span className="text-[10px] md:text-xs font-normal mt-1">UNIDAD PROFESIONAL "ADOLFO L�PEZ MATEOS"</span>
+          <span className="text-base md:text-xl tracking-widest mb-1">INSTITUTO POLITÉCNICO NACIONAL</span>
+          <span className="text-xs md:text-sm tracking-wide">ESCUELA SUPERIOR DE INGENIERÍA MECÁNICA Y ELÉCTRICA</span>
+          <span className="text-[10px] md:text-xs font-normal mt-1">UNIDAD PROFESIONAL "ADOLFO LÓPEZ MATEOS"</span>
         </div>
         <div className="bg-white p-3 rounded-full shadow-lg w-24 h-24 md:w-28 md:h-28 flex items-center justify-center shrink-0">
           <img src={esimeLogo} alt="ESIME" className="w-full h-full object-contain" />
@@ -241,12 +283,16 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">1. Adquisición (Edge Gateway)</h3>
 
       <div className="grid grid-cols-2 gap-8 mb-8">
-        <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-          <img src={reactHmiImg} alt="Terminal Python / Edge" className="w-full h-full object-cover" />
-        </div>
-        <div className="bg-white h-[45vh] rounded-xl flex flex-col items-center justify-center relative shadow-lg overflow-hidden border border-gray-300">
-          <ProtocolFactoryDiagram />
-        </div>
+        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="Terminal Python / Edge" className="w-full h-full object-contain" />}>
+          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
+            <img src={reactHmiImg} alt="Terminal Python / Edge" className="w-full h-full object-cover" />
+          </div>
+        </ExpandableCard>
+        <ExpandableCard fullscreenNode={<div className="w-full h-full"><ProtocolFactoryDiagram /></div>}>
+          <div className="bg-white h-[45vh] rounded-xl flex flex-col items-center justify-center relative shadow-lg overflow-hidden border border-gray-300">
+            <ProtocolFactoryDiagram />
+          </div>
+        </ExpandableCard>
       </div>
 
       <div className="bg-white p-6 rounded-xl shadow-lg border-l-8 border-blue-600 mx-auto w-full">
@@ -267,12 +313,16 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       <h3 className="text-2xl font-bold text-yellow-900 mb-8 text-center">2. Ciberseguridad y Enrutamiento</h3>
 
       <div className="grid grid-cols-2 gap-8 mb-8">
-        <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-          <img src={reactHmiImg} alt="Consola VPS" className="w-full h-full object-cover" />
-        </div>
-        <div className="bg-white h-[45vh] rounded-xl flex flex-col items-center justify-center relative shadow-lg overflow-hidden border border-gray-300">
-          <MosquittoSecurityDiagram />
-        </div>
+        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="Consola VPS" className="w-full h-full object-contain" />}>
+          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
+            <img src={reactHmiImg} alt="Consola VPS" className="w-full h-full object-cover" />
+          </div>
+        </ExpandableCard>
+        <ExpandableCard fullscreenNode={<div className="w-full h-full"><MosquittoSecurityDiagram /></div>}>
+          <div className="bg-white h-[45vh] rounded-xl flex flex-col items-center justify-center relative shadow-lg overflow-hidden border border-gray-300">
+            <MosquittoSecurityDiagram />
+          </div>
+        </ExpandableCard>
       </div>
 
       <div className="bg-white p-6 rounded-xl shadow-lg border-l-8 border-yellow-500 mx-auto w-full">
@@ -293,12 +343,16 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       <h3 className="text-2xl font-bold text-green-900 mb-8 text-center">3. Persistencia e Interfaz (HMI)</h3>
 
       <div className="grid grid-cols-2 gap-8 mb-8">
-        <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-          <img src={reactHmiImg} alt="HMI" className="w-full h-full object-cover" />
-        </div>
-        <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-          <img src={reactHmiImg} alt="TimescaleDB" className="w-full h-full object-cover" />
-        </div>
+        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="HMI" className="w-full h-full object-contain" />}>
+          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
+            <img src={reactHmiImg} alt="HMI" className="w-full h-full object-cover" />
+          </div>
+        </ExpandableCard>
+        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="TimescaleDB" className="w-full h-full object-contain" />}>
+          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
+            <img src={reactHmiImg} alt="TimescaleDB" className="w-full h-full object-cover" />
+          </div>
+        </ExpandableCard>
       </div>
 
       <div className="bg-white p-6 rounded-xl shadow-lg border-l-8 border-green-600 mx-auto w-full">
@@ -334,13 +388,23 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
         </div>
 
         {/* Video Placeholder */}
-        <div className="bg-black/90 rounded-2xl flex flex-col items-center justify-center shadow-lg border border-gray-800 relative">
-          <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-4 backdrop-blur cursor-pointer hover:bg-white/20 transition-colors border border-white/20">
-            <div className="w-0 h-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-2"></div>
+        <ExpandableCard
+          fullscreenNode={
+            <div className="w-full h-full bg-black flex items-center justify-center">
+              <video controls autoPlay className="w-full h-full object-contain" src="/assets/demo.mp4">
+                Tu navegador no soporta la reproducción de video.
+              </video>
+            </div>
+          }
+        >
+          <div className="bg-black/90 rounded-2xl flex flex-col items-center justify-center shadow-lg border border-gray-800 relative h-full">
+            <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-4 backdrop-blur cursor-pointer hover:bg-white/20 transition-colors border border-white/20">
+              <div className="w-0 h-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-2"></div>
+            </div>
+            <p className="text-white/70 font-medium">Video Demostrativo del Proceso</p>
+            <p className="text-white/40 text-sm mt-2">Click para reproducir a pantalla completa</p>
           </div>
-          <p className="text-white/70 font-medium">Video Demostrativo del Proceso</p>
-          <p className="text-white/40 text-sm mt-2">[ Placeholder para src/assets/demo.mp4 ]</p>
-        </div>
+        </ExpandableCard>
       </div>
     </div>
   );
@@ -488,6 +552,9 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
           <ChevronRight size={32} />
         </button>
       </div>
+
+      {/* Fullscreen Viewer Modal */}
+      <FullscreenModal />
 
     </div>
   );

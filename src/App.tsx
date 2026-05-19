@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import {
-  ChevronDown,
   Radio,
   Cloud,
   Zap,
   Database,
-  ArrowRight,
   ShieldAlert,
   CheckCircle,
   XCircle,
@@ -15,7 +13,6 @@ import {
   Workflow,
   Activity,
   Box,
-  Cpu,
   Code,
   Terminal,
   Container,

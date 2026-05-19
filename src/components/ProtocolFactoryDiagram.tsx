@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ReactFlow, Background, Controls } from '@xyflow/react';
+import { ReactFlow, Background, Controls, type Edge, MarkerType } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import BaseNode from './BaseNode';
 import { LuCode, LuCpu, LuServer, LuFactory, LuWifi } from 'react-icons/lu';
@@ -103,9 +103,9 @@ const initialNodes = [
 
 const ls = { fill: '#64748b', fontFamily: 'monospace', fontSize: 10 };
 const lb = { fill: '#fff', fillOpacity: 0.9 };
-const markerEnd = { type: 'arrowclosed', width: 20, height: 20, color: '#94a3b8' };
+const markerEnd = { type: MarkerType.ArrowClosed, width: 20, height: 20, color: '#94a3b8' } as const;
 
-const initialEdges = [
+const initialEdges: Edge[] = [
   {
     id: 'e-modbus-industrial',
     source: 'modbus_driver',

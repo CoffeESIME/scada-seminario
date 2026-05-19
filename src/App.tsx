@@ -19,7 +19,6 @@ import {
   BookOpen
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-import './index.css';
 
 // Import Logos
 import ipnLogo from './assets/instituto-politecnico-nacional-seeklogo.svg';

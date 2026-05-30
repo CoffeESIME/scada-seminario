@@ -25,7 +25,6 @@ import esimeLogo from '../assets/esime.png';
 import { ScadaFlowDiagram } from './ScadaFlowDiagram';
 import { ProtocolFactoryDiagram } from './ProtocolFactoryDiagram';
 import { MosquittoSecurityDiagram } from './MosquittoSecurityDiagram';
-import reactHmiImg from '../assets/react-hmi.png';
 import edgeIMG from '../assets/edge.png';
 import HMI from '../assets/lienzo.png';
 import demoVideo from '../assets/20260519_160836.mp4';

@@ -119,17 +119,11 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
         DISEÑO Y DESARROLLO DE UNA ARQUITECTURA SCADA MULTIPROTOCOLO (MODBUS, MQTT) BASADA EN SERVICIOS CONTENERIZADOS
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-8 md:gap-32 mt-4 text-left justify-center w-full max-w-3xl">
-        <div className="text-center md:text-right flex-1">
+      <div className="flex flex-col gap-4 mt-4 text-center justify-center w-full max-w-3xl">
+        <div>
           <p className="text-sm md:text-base text-[#666666] mb-1 uppercase tracking-widest">Presenta</p>
           <p className="text-xl md:text-2xl font-bold text-[#333333]">Fabian Romero Hernández</p>
           <p className="text-xs md:text-sm text-[#666666] mt-1">IPN - ESIME ZACATENCO - ICA</p>
-        </div>
-        <div className="hidden md:block w-px bg-gray-300"></div>
-        <div className="text-center md:text-left flex-1">
-          <p className="text-sm md:text-base text-[#666666] mb-1 uppercase tracking-widest">Asesores</p>
-          <p className="text-lg md:text-xl font-bold text-[#333333]">Ing. Guillermo Manuel Escarcega Carrera</p>
-          <p className="text-lg md:text-xl font-bold text-[#333333]">Ing. Arturo Alonso Hit Espinoza</p>
         </div>
       </div>
     </div>

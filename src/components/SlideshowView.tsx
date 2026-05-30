@@ -26,7 +26,9 @@ import { ScadaFlowDiagram } from './ScadaFlowDiagram';
 import { ProtocolFactoryDiagram } from './ProtocolFactoryDiagram';
 import { MosquittoSecurityDiagram } from './MosquittoSecurityDiagram';
 import reactHmiImg from '../assets/react-hmi.png';
-
+import edgeIMG from '../assets/edge.png';
+import HMI from '../assets/lienzo.png';
+import demoVideo from '../assets/20260519_160836.mp4';
 interface SlideshowViewProps {
   onClose: () => void;
 }
@@ -270,9 +272,9 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">1. Adquisición (Edge Gateway)</h3>
 
       <div className="grid grid-cols-2 gap-8 mb-8">
-        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="Terminal Python / Edge" className="w-full h-full object-contain" />}>
-          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-            <img src={reactHmiImg} alt="Terminal Python / Edge" className="w-full h-full object-cover" />
+        <ExpandableCard fullscreenNode={<img src={edgeIMG} alt="Terminal Python / Edge" className="w-full h-full object-contain" />}>
+          <div className="bg-white h-[45vh] rounded-xl flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+            <img src={edgeIMG} alt="Terminal Python / Edge" className="w-full h-full object-contain" />
           </div>
         </ExpandableCard>
         <ExpandableCard fullscreenNode={<div className="w-full h-full"><ProtocolFactoryDiagram /></div>}>
@@ -299,12 +301,7 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       </h2>
       <h3 className="text-2xl font-bold text-yellow-900 mb-8 text-center">2. Ciberseguridad y Enrutamiento</h3>
 
-      <div className="grid grid-cols-2 gap-8 mb-8">
-        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="Consola VPS" className="w-full h-full object-contain" />}>
-          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-            <img src={reactHmiImg} alt="Consola VPS" className="w-full h-full object-cover" />
-          </div>
-        </ExpandableCard>
+      <div className="grid grid-cols-1 gap-8 mb-8">
         <ExpandableCard fullscreenNode={<div className="w-full h-full"><MosquittoSecurityDiagram /></div>}>
           <div className="bg-white h-[45vh] rounded-xl flex flex-col items-center justify-center relative shadow-lg overflow-hidden border border-gray-300">
             <MosquittoSecurityDiagram />
@@ -329,15 +326,10 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       </h2>
       <h3 className="text-2xl font-bold text-green-900 mb-8 text-center">3. Persistencia e Interfaz (HMI)</h3>
 
-      <div className="grid grid-cols-2 gap-8 mb-8">
-        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="HMI" className="w-full h-full object-contain" />}>
-          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-            <img src={reactHmiImg} alt="HMI" className="w-full h-full object-cover" />
-          </div>
-        </ExpandableCard>
-        <ExpandableCard fullscreenNode={<img src={reactHmiImg} alt="TimescaleDB" className="w-full h-full object-contain" />}>
-          <div className="bg-white h-[45vh] rounded-xl overflow-hidden shadow-lg border border-gray-300">
-            <img src={reactHmiImg} alt="TimescaleDB" className="w-full h-full object-cover" />
+      <div className="grid grid-cols-1 gap-8 mb-8">
+        <ExpandableCard fullscreenNode={<img src={HMI} alt="TimescaleDB" className="w-full h-full object-contain" />}>
+          <div className="bg-white h-[45vh] rounded-xl flex items-center justify-center shadow-lg border border-gray-300 overflow-hidden">
+            <img src={HMI} alt="TimescaleDB" className="w-full h-full object-contain" />
           </div>
         </ExpandableCard>
       </div>
@@ -358,27 +350,11 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
         Funcionamiento
       </h2>
 
-      <div className="grid grid-cols-2 gap-8 h-[60vh]">
-        {/* Capturas (Simulación de UI existente) */}
-        <div className="bg-[#d4d4d4] rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-lg border border-gray-300">
-          <div className="absolute top-4 left-4 right-4 flex justify-between text-xs font-bold text-slate-600 border-b-2 border-slate-400 pb-2">
-            <span>PROCESO_MEZCLA_01</span>
-            <span>RUNNING</span>
-          </div>
-
-          <div className="mt-8 bg-white border-2 border-black p-4 shadow-md text-center">
-            <h4 className="text-sm font-bold mb-2 uppercase tracking-wider text-slate-700">Nivel de Tanque</h4>
-            <div className="text-3xl font-bold font-mono tracking-widest text-[#621132]">70.5 %</div>
-          </div>
-
-          <div className="absolute bottom-4 text-sm text-slate-600 font-bold bg-white/50 px-4 py-1 rounded">Captura HMI Runtime</div>
-        </div>
-
-        {/* Video Placeholder */}
+      <div className="grid grid-cols-1 gap-8 h-[60vh]">
         <ExpandableCard
           fullscreenNode={
             <div className="w-full h-full bg-black flex items-center justify-center">
-              <video controls autoPlay className="w-full h-full object-contain" src="/assets/demo.mp4">
+              <video controls autoPlay className="w-full h-full object-contain" src={demoVideo}>
                 Tu navegador no soporta la reproducción de video.
               </video>
             </div>
@@ -406,40 +382,44 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
           <thead>
             <tr className="bg-[#621132] text-white">
               <th className="p-4 md:p-6 font-bold text-lg">Concepto de Infraestructura</th>
+              <th className="p-4 md:p-6 font-bold text-lg">Especificación / Tecnología</th>
               <th className="p-4 md:p-6 font-bold text-lg text-center">Costo Estimado (USD)</th>
-              <th className="p-4 md:p-6 font-bold text-lg text-center">Frecuencia</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 text-[#333333] text-lg">
             <tr className="hover:bg-gray-50 transition-colors">
-              <td className="p-4 md:p-6">Edge Gateway Industrial (Hardware local)</td>
-              <td className="p-4 md:p-6 text-center font-mono font-bold text-[#621132]">$ 150.00</td>
-              <td className="p-4 md:p-6 text-center text-[#666666]">Pago único</td>
+              <td className="p-4 md:p-6 font-semibold">Edge Gateway Industrial</td>
+              <td className="p-4 md:p-6">Hardware base (ej. Raspberry Pi 4/5 o equivalente) con carcasa disipadora.</td>
+              <td className="p-4 md:p-6 text-center font-mono font-bold text-[#621132]">$ 120.00</td>
             </tr>
             <tr className="hover:bg-gray-50 transition-colors bg-gray-50/50">
-              <td className="p-4 md:p-6">Servidor Virtual Privado (VPS en AWS / DigitalOcean)</td>
+              <td className="p-4 md:p-6 font-semibold">Almacenamiento Edge de Alta Resistencia</td>
+              <td className="p-4 md:p-6">Memoria eMMC o MicroSD Industrial (Protección contra ciclos de escritura de SQLite/Docker).</td>
+              <td className="p-4 md:p-6 text-center font-mono font-bold text-[#621132]">$ 40.00</td>
+            </tr>
+            <tr className="hover:bg-gray-50 transition-colors">
+              <td className="p-4 md:p-6 font-semibold">Motor de Contenedores Edge</td>
+              <td className="p-4 md:p-6">Docker Engine & Docker Compose.</td>
+              <td className="p-4 md:p-6 text-center font-mono font-bold text-green-600">$ 0.00</td>
+            </tr>
+            <tr className="hover:bg-gray-50 transition-colors bg-gray-50/50">
+              <td className="p-4 md:p-6 font-semibold">Servidor Virtual Privado (Cloud)</td>
+              <td className="p-4 md:p-6">Instancia VPS (AWS / DigitalOcean) para ingesta MQTT y Backend.</td>
               <td className="p-4 md:p-6 text-center font-mono font-bold text-[#621132]">$ 30.00</td>
-              <td className="p-4 md:p-6 text-center text-[#666666]">Mensual</td>
             </tr>
             <tr className="hover:bg-gray-50 transition-colors">
-              <td className="p-4 md:p-6">Certificados SSL Web (Let's Encrypt) / CA Privada</td>
+              <td className="p-4 md:p-6 font-semibold">Infraestructura Criptográfica</td>
+              <td className="p-4 md:p-6">Certificados SSL Web (Let's Encrypt) / CA Privada (OpenSSL) para mTLS.</td>
               <td className="p-4 md:p-6 text-center font-mono font-bold text-green-600">$ 0.00</td>
-              <td className="p-4 md:p-6 text-center text-[#666666]">Open-Source</td>
             </tr>
             <tr className="hover:bg-gray-50 transition-colors bg-gray-50/50">
-              <td className="p-4 md:p-6">Licenciamiento de Base de Datos (TimescaleDB)</td>
+              <td className="p-4 md:p-6 font-semibold">Persistencia de Series de Tiempo</td>
+              <td className="p-4 md:p-6">Licenciamiento de Base de Datos (TimescaleDB / PostgreSQL).</td>
               <td className="p-4 md:p-6 text-center font-mono font-bold text-green-600">$ 0.00</td>
-              <td className="p-4 md:p-6 text-center text-[#666666]">Open-Source</td>
-            </tr>
-            <tr className="hover:bg-gray-50 transition-colors">
-              <td className="p-4 md:p-6">Licenciamiento de Software SCADA (HMI / Backend)</td>
-              <td className="p-4 md:p-6 text-center font-mono font-bold text-green-600">$ 0.00</td>
-              <td className="p-4 md:p-6 text-center text-[#666666]">Desarrollo Propio</td>
             </tr>
             <tr className="bg-[#f8f9fa] border-t-4 border-[#621132]">
-              <td className="p-4 md:p-6 font-bold text-xl text-[#4A0D26]">Costo Total de Arranque (Mes 1)</td>
-              <td className="p-4 md:p-6 text-center font-mono font-bold text-2xl text-[#621132]">$ 180.00</td>
-              <td className="p-4 md:p-6 text-center text-[#666666]"></td>
+              <td className="p-4 md:p-6 font-bold text-xl text-[#4A0D26]" colSpan={2}>Costo Total de Arranque (Mes 1)</td>
+              <td className="p-4 md:p-6 text-center font-mono font-bold text-2xl text-[#621132]">$ 190.00</td>
             </tr>
           </tbody>
         </table>

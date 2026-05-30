@@ -27,7 +27,6 @@ import { ProtocolFactoryDiagram } from './ProtocolFactoryDiagram';
 import { MosquittoSecurityDiagram } from './MosquittoSecurityDiagram';
 import edgeIMG from '../assets/edge.png';
 import HMI from '../assets/lienzo.png';
-import demoVideo from '../assets/20260519_160836.mp4';
 interface SlideshowViewProps {
   onClose: () => void;
 }
@@ -353,7 +352,7 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
         <ExpandableCard
           fullscreenNode={
             <div className="w-full h-full bg-black flex items-center justify-center">
-              <video controls autoPlay className="w-full h-full object-contain" src={demoVideo}>
+              <video controls autoPlay className="w-full h-full object-contain" src='no'>
                 Tu navegador no soporta la reproducción de video.
               </video>
             </div>

@@ -28,6 +28,7 @@ import edgeIMG from '../assets/edge.png';
 import HMI from '../assets/lienzo.png';
 import badHmi from '../assets/badhmi.png';
 import goodHmi from '../assets/goodhmi.png';
+import workingProjectIMG from '../assets/working-project.png';
 interface SlideshowViewProps {
   onClose: () => void;
 }
@@ -498,19 +499,20 @@ export const SlideshowView = ({ onClose }: SlideshowViewProps) => {
       <div className="grid grid-cols-1 gap-8 h-[60vh]">
         <ExpandableCard
           fullscreenNode={
-            <div className="w-full h-full bg-black flex items-center justify-center">
-              <video controls autoPlay className="w-full h-full object-contain" src='no'>
-                Tu navegador no soporta la reproducción de video.
-              </video>
+            <div className="w-full h-full bg-black flex items-center justify-center p-8">
+              <img src={workingProjectIMG} alt="Demo en vivo" className="max-w-full max-h-full object-contain rounded-xl" />
             </div>
           }
         >
-          <div className="bg-black/90 rounded-2xl flex flex-col items-center justify-center shadow-lg border border-gray-800 relative h-full">
-            <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-4 backdrop-blur cursor-pointer hover:bg-white/20 transition-colors border border-white/20">
-              <div className="w-0 h-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-2"></div>
+          <div className="bg-white rounded-2xl flex flex-col items-center justify-center shadow-lg border-2 border-gray-200 relative h-full overflow-hidden p-6 hover:shadow-xl transition-shadow cursor-zoom-in">
+            <div className="flex-1 w-full h-full min-h-0 flex items-center justify-center overflow-hidden rounded-xl bg-gray-50 mb-6 border border-gray-100">
+               <img src={workingProjectIMG} alt="Hardware del Proyecto" className="w-full h-full object-contain" />
             </div>
-            <p className="text-white/95 font-bold">Video Demostrativo del Proceso</p>
-            <p className="text-white/80 text-lg mt-2">Click para reproducir a pantalla completa</p>
+            <div className="text-center">
+              <p className="text-[#621132] font-extrabold text-4xl mb-2">Demo en vivo</p>
+              <p className="text-gray-700 text-xl font-bold">Explicación del Hardware y Arquitectura</p>
+              <p className="text-gray-400 text-sm mt-2 font-medium">Click para ver a detalle</p>
+            </div>
           </div>
         </ExpandableCard>
       </div>

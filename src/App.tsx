@@ -16,7 +16,8 @@ import {
   Code,
   Terminal,
   Container,
-  BookOpen
+  BookOpen,
+  Play
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 
@@ -39,6 +40,13 @@ function ScrollingView({ onPresentClick }: { onPresentClick: () => void }) {
             </div>
             <span className="text-[#333333] font-bold text-sm md:text-base ml-2">SCADA <span className="text-[#621132]">NEXT-GEN</span></span>
           </div>
+          <button 
+            onClick={onPresentClick}
+            className="md:hidden bg-[#621132] text-white px-3 py-1.5 rounded-full text-xs font-bold hover:bg-[#4A0D26] transition-colors shadow-md flex items-center gap-1"
+          >
+            <Play size={10} fill="currentColor" />
+            <span>Presentación</span>
+          </button>
           <ul className="nav-links">
             <li><a href="#problem">Problema</a></li>
             <li><a href="#benchmark">Benchmarking</a></li>
